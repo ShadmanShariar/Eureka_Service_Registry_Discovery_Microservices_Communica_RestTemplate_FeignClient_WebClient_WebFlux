@@ -6,12 +6,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/user")
 public class  UserController {
 
     private RestTemplate restTemplate;
+    @Autowired
+    private WebClient.Builder webClient;
     @Autowired
     private RegistrationService registrationService;
     public UserController(RestTemplate restTemplate) {
@@ -30,9 +35,33 @@ public class  UserController {
 //        return result;
 //    }
     //Calling Another Microservice Using Feign Client
+//    @GetMapping("/{name}")
+//    public String getName(@PathVariable String name){
+//        String result = registrationService.getName(name);
+//        return result;
+//    }
+
+    //Calling Another Microservice Using Web Client
+//    @GetMapping("/{name}")
+//    public String getName(@PathVariable String name) {
+//       String res = webClient.build()
+//               .get()
+//               .uri("http://REGISTRATION-SERVICE/registration/"+name)
+//               .retrieve()
+//               .bodyToMono(String.class)
+//               .block();
+//        System.out.println(res);
+//       return res;
+//    }
+
+    //Calling Another Microservice Using Web Flux
     @GetMapping("/{name}")
-    public String getName(@PathVariable String name){
-        String result = registrationService.getName(name);
-        return result;
+    public Flux<String> getName(@PathVariable String name) {
+        return webClient.build()
+                .get()
+                .uri("http://REGISTRATION-SERVICE/registration/{name}", name)
+                .retrieve()
+                .bodyToFlux(String.class) // Flux instead of Mono
+                .doOnNext(System.out::println); // Logs response
     }
 }
