@@ -43,15 +43,13 @@ public class  UserController {
 
     //Calling Another Microservice Using Web Client
 //    @GetMapping("/{name}")
-//    public String getName(@PathVariable String name) {
-//       String res = webClient.build()
+//    public Mono<String> getName(@PathVariable String name) {
+//         return webClient.build()
 //               .get()
 //               .uri("http://REGISTRATION-SERVICE/registration/"+name)
 //               .retrieve()
 //               .bodyToMono(String.class)
-//               .block();
-//        System.out.println(res);
-//       return res;
+//               .doOnNext(System.out::println);
 //    }
 
     //Calling Another Microservice Using Web Flux
