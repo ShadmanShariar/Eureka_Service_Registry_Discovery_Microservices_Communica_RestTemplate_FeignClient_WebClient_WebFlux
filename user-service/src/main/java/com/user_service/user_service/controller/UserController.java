@@ -1,5 +1,6 @@
-package com.user_service.user_service;
+package com.user_service.user_service.controller;
 
+import com.user_service.user_service.feign.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/user")
@@ -28,13 +28,14 @@ public class  UserController {
         return "User";
     }
 
-    //Calling Another Microservice Using Rest Template
+    //Calling Another Microservice Using Rest Template Blocking and Synchronous
 //    @GetMapping("/{name}")
 //    public String getName(@PathVariable String name){
 //        String result = restTemplate.getForObject("http://REGISTRATION-SERVICE/registration/"+name, String.class);
 //        return result;
 //    }
-    //Calling Another Microservice Using Feign Client
+
+    //Calling Another Microservice Using Feign Client Blocking and Synchronous
 //    @GetMapping("/{name}")
 //    public String getName(@PathVariable String name){
 //        String result = registrationService.getName(name);

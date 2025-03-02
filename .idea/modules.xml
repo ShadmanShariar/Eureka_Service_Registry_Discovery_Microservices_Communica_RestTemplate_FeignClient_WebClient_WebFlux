@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Eureka_Service_Registry_Discovery_Java_Springboot.iml" filepath="$PROJECT_DIR$/.idea/Eureka_Service_Registry_Discovery_Java_Springboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/registration-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/registration-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/user-service.main.iml" />
     </modules>
   </component>
 </project>
